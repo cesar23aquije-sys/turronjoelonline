@@ -1,276 +1,74 @@
-<!DOCTYPE html>
+ from pathlib import Path
+import base64
+
+img_path = Path("/mnt/data/a_crisp_high_resolution_product_photography_shot.png")
+html_path = Path("/mnt/data/index_turron_joel_nuevo.html")
+
+img_b64 = base64.b64encode(img_path.read_bytes()).decode("ascii")
+
+html = r'''<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Turrón Joel - Pedidos Online</title>
-
+<title>Turrón Joel | Pedido Online</title>
 <style>
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f5f1f7;
-    color:#29202f;
-}
-
-.header{
-    background:linear-gradient(135deg,#43105f,#78129e);
-    color:white;
-    text-align:center;
-    padding:35px 20px;
-}
-
-.header h1{
-    margin:0;
-    font-size:36px;
-}
-
-.header p{
-    margin:10px 0 0;
-    font-size:17px;
-}
-
-.container{
-    max-width:650px;
-    margin:25px auto;
-    padding:0 15px;
-}
-
-.card{
-    background:white;
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.10);
-}
-
-h2{
-    color:#64118b;
-    text-align:center;
-}
-
-.descripcion{
-    text-align:center;
-    color:#666;
-}
-
-.cantidad{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-    margin:25px 0 10px;
-}
-
-.cantidad button{
-    width:50px;
-    height:50px;
-    border:0;
-    border-radius:50%;
-    background:#64118b;
-    color:white;
-    font-size:27px;
-    cursor:pointer;
-}
-
-#cantidad{
-    width:110px;
-    padding:10px;
-    text-align:center;
-    font-size:25px;
-    font-weight:bold;
-    border:2px solid #ddd;
-    border-radius:10px;
-}
-
-.delivery{
-    margin-top:25px;
-}
-
-.delivery label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.delivery input{
-    width:100%;
-    padding:13px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
-}
-
-.resultado{
-    background:#64118b;
-    color:white;
-    margin-top:25px;
-    padding:22px;
-    border-radius:17px;
-}
-
-.fila{
-    display:flex;
-    justify-content:space-between;
-    padding:9px 0;
-    border-bottom:1px solid rgba(255,255,255,.2);
-}
-
-.total{
-    text-align:center;
-    margin-top:20px;
-}
-
-.total span{
-    font-size:14px;
-}
-
-.total strong{
-    display:block;
-    font-size:38px;
-    margin-top:5px;
-}
-
-.whatsapp{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:17px;
-    margin-top:22px;
-    background:#20a85a;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.whatsapp:hover{
-    background:#168847;
-}
-
-.promos{
-    margin-top:25px;
-    background:#faf4ff;
-    padding:18px;
-    border-radius:14px;
-}
-
-.promos h3{
-    color:#64118b;
-    margin-top:0;
-}
-
-.promos p{
-    margin:7px 0;
-}
-
-.nota{
-    text-align:center;
-    color:#777;
-    font-size:13px;
-    margin-top:15px;
-}
-
-@media(max-width:600px){
-    .header h1{font-size:29px}
-    .card{padding:18px}
-}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f1f7;color:#29202f}
+.header{background:linear-gradient(135deg,#42105f,#78139f);color:#fff;text-align:center;padding:30px 18px}
+.header h1{margin:0;font-size:34px}.header p{margin:8px 0 0}
+.container{max-width:760px;margin:22px auto;padding:0 14px}.card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 6px 24px rgba(0,0,0,.1)}
+.product-img{width:100%;max-height:390px;object-fit:cover;border-radius:18px;display:block;margin:0 auto 22px}
+h2{text-align:center;color:#64118b;margin:8px 0}.sub{text-align:center;color:#666}
+.mode{display:flex;gap:10px;margin:20px 0}.mode button{flex:1;padding:13px;border:2px solid #64118b;background:#fff;color:#64118b;border-radius:12px;font-weight:bold;cursor:pointer}.mode button.active{background:#64118b;color:#fff}
+.selector{display:flex;align-items:center;justify-content:center;gap:14px;margin:20px 0 8px}.selector button{width:50px;height:50px;border:0;border-radius:50%;background:#64118b;color:#fff;font-size:28px;cursor:pointer}
+.selector input{width:130px;text-align:center;font-size:26px;font-weight:bold;padding:10px;border:2px solid #ddd;border-radius:11px}
+.unit-note{text-align:center;color:#666}.delivery{margin-top:20px}.delivery label{display:block;font-weight:bold;margin-bottom:7px}
+.delivery input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;font-size:16px}
+.result{margin-top:22px;background:#64118b;color:#fff;padding:21px;border-radius:17px}.row{display:flex;justify-content:space-between;gap:15px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.2)}
+.total{text-align:center;margin-top:18px}.total small{font-size:14px}.total strong{display:block;font-size:38px;margin-top:5px}
+.whatsapp{width:100%;margin-top:20px;padding:17px;border:0;border-radius:12px;background:#20a85a;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
+.promos{margin-top:22px;background:#faf4ff;border-radius:14px;padding:17px}.promos h3{margin-top:0;color:#64118b}.promos p{margin:7px 0}
+.note{text-align:center;color:#777;font-size:13px;margin-top:14px}
+@media(max-width:600px){.header h1{font-size:29px}.card{padding:16px}.product-img{max-height:300px}.total strong{font-size:34px}}
 </style>
 </head>
-
 <body>
-
-<div class="header">
-    <h1>🍬 Turrón Joel</h1>
-    <p>Haz tu pedido online fácil y rápido</p>
-</div>
-
-<div class="container">
-
-<div class="card">
-
+<header class="header"><h1>🍬 Turrón Joel</h1><p>Haz tu pedido online fácil y rápido</p></header>
+<main class="container"><section class="card">
+<img class="product-img" src="data:image/png;base64,''' + img_b64 + r'''" alt="Turrón Joel">
 <h2>🛒 Calcula tu pedido</h2>
+<p class="sub">Elige si quieres comprar por unidades o por cajas.</p>
 
-<p class="descripcion">
-Mientras más compras, menor es el precio por unidad.
-</p>
-
-<div class="cantidad">
-
-<button onclick="cambiar(-1)">−</button>
-
-<input
-id="cantidad"
-type="number"
-value="20"
-min="1"
-oninput="calcular()">
-
-<button onclick="cambiar(1)">+</button>
-
+<div class="mode">
+<button id="btnUnidades" class="active" onclick="cambiarModo('unidades')">POR UNIDADES</button>
+<button id="btnCajas" onclick="cambiarModo('cajas')">POR CAJAS</button>
 </div>
 
-<p style="text-align:center;color:#666">
-Cada caja contiene <b>20 unidades</b>
-</p>
+<div class="selector">
+<button onclick="cambiarCantidad(-1)">−</button>
+<input id="cantidad" type="number" min="1" value="20" oninput="calcular()">
+<button onclick="cambiarCantidad(1)">+</button>
+</div>
+<p id="labelCantidad" class="unit-note">Cantidad de turrones</p>
 
 <div class="delivery">
-
 <label>🚚 Costo de delivery</label>
-
-<input
-id="delivery"
-type="number"
-value="0"
-min="0"
-step="0.50"
-oninput="calcular()">
-
+<input id="delivery" type="number" min="0" step="0.50" value="0" oninput="calcular()">
 </div>
 
-<div class="resultado">
-
-<div class="fila">
-<span>🍬 Unidades</span>
-<b id="rCantidad">20</b>
+<div class="result">
+<div class="row"><span>🍬 Unidades</span><b id="rUnidades">20</b></div>
+<div class="row"><span>📦 Cajas completas</span><b id="rCajas">1</b></div>
+<div class="row"><span>💰 Precio por unidad</span><b id="rPrecio">S/ 17.50</b></div>
+<div class="row"><span>🛒 Subtotal</span><b id="rSubtotal">S/ 350.00</b></div>
+<div class="row"><span>🚚 Delivery</span><b id="rDelivery">S/ 0.00</b></div>
+<div class="total"><small>TOTAL A PAGAR</small><strong id="rTotal">S/ 350.00</strong></div>
 </div>
 
-<div class="fila">
-<span>📦 Cajas</span>
-<b id="rCajas">1</b>
-</div>
-
-<div class="fila">
-<span>💰 Precio unitario</span>
-<b id="rPrecio">S/ 17.50</b>
-</div>
-
-<div class="fila">
-<span>🛒 Subtotal</span>
-<b id="rSubtotal">S/ 350.00</b>
-</div>
-
-<div class="fila">
-<span>🚚 Delivery</span>
-<b id="rDelivery">S/ 0.00</b>
-</div>
-
-<div class="total">
-<span>TOTAL A PAGAR</span>
-<strong id="rTotal">S/ 350.00</strong>
-</div>
-
-</div>
-
-<button class="whatsapp" onclick="whatsapp()">
-📲 PEDIR POR WHATSAPP
-</button>
+<button class="whatsapp" onclick="pedirWhatsApp()">📲 PEDIR POR WHATSAPP</button>
 
 <div class="promos">
-
 <h3>🔥 Precios por cantidad</h3>
-
 <p>1 – 15 unidades → <b>S/ 18.00</b> c/u</p>
 <p>16 – 20 unidades → <b>S/ 17.50</b> c/u</p>
 <p>21 – 30 unidades → <b>S/ 17.00</b> c/u</p>
@@ -279,136 +77,21 @@ oninput="calcular()">
 <p>60 – 79 unidades → <b>S/ 16.25</b> c/u</p>
 <p>80 – 99 unidades → <b>S/ 16.10</b> c/u</p>
 <p>100+ unidades → <b>S/ 16.00</b> c/u</p>
-
 </div>
-
-<p class="nota">
-El pedido se confirma por WhatsApp.
-</p>
-
-</div>
-</div>
+<p class="note">El pedido se confirma por WhatsApp.</p>
+</section></main>
 
 <script>
-
-const WHATSAPP = "51999609718";
-
-function precio(cantidad){
-
-    if(cantidad <= 15) return 18;
-    if(cantidad <= 20) return 17.50;
-    if(cantidad <= 30) return 17;
-    if(cantidad <= 39) return 16.75;
-    if(cantidad <= 59) return 16.50;
-    if(cantidad <= 79) return 16.25;
-    if(cantidad <= 99) return 16.10;
-
-    return 16;
-}
-
-function cambiar(valor){
-
-    let input = document.getElementById("cantidad");
-
-    let cantidad = parseInt(input.value) || 1;
-
-    cantidad += valor;
-
-    if(cantidad < 1) cantidad = 1;
-
-    input.value = cantidad;
-
-    calcular();
-}
-
-function calcular(){
-
-    let cantidad =
-        parseInt(document.getElementById("cantidad").value) || 1;
-
-    let delivery =
-        parseFloat(document.getElementById("delivery").value) || 0;
-
-    if(cantidad < 1) cantidad = 1;
-
-    let precioUnitario = precio(cantidad);
-
-    let subtotal = cantidad * precioUnitario;
-
-    let total = subtotal + delivery;
-
-    let cajas = Math.floor(cantidad / 20);
-
-    let sueltas = cantidad % 20;
-
-    document.getElementById("rCantidad").textContent =
-        cantidad;
-
-    document.getElementById("rCajas").textContent =
-        cajas + (cajas === 1 ? " caja" : " cajas");
-
-    document.getElementById("rPrecio").textContent =
-        "S/ " + precioUnitario.toFixed(2);
-
-    document.getElementById("rSubtotal").textContent =
-        "S/ " + subtotal.toFixed(2);
-
-    document.getElementById("rDelivery").textContent =
-        "S/ " + delivery.toFixed(2);
-
-    document.getElementById("rTotal").textContent =
-        "S/ " + total.toFixed(2);
-}
-
-function whatsapp(){
-
-    let cantidad =
-        parseInt(document.getElementById("cantidad").value) || 1;
-
-    let delivery =
-        parseFloat(document.getElementById("delivery").value) || 0;
-
-    let precioUnitario = precio(cantidad);
-
-    let subtotal = cantidad * precioUnitario;
-
-    let total = subtotal + delivery;
-
-    let cajas = Math.floor(cantidad / 20);
-
-    let sueltas = cantidad % 20;
-
-    let pedido =
-        cajas + (cajas === 1 ? " caja" : " cajas");
-
-    if(sueltas > 0){
-        pedido += " + " + sueltas + " unidad(es)";
-    }
-
-    let mensaje =
-`Hola 👋, quiero realizar un pedido de Turrón Joel.
-
-🍬 Cantidad: ${cantidad} unidades
-📦 Pedido: ${pedido}
-💰 Precio unitario: S/ ${precioUnitario.toFixed(2)}
-🛒 Subtotal: S/ ${subtotal.toFixed(2)}
-🚚 Delivery: S/ ${delivery.toFixed(2)}
-💵 TOTAL: S/ ${total.toFixed(2)}
-
-Quisiera confirmar mi pedido y coordinar la entrega.`;
-
-    let url =
-        "https://wa.me/" +
-        WHATSAPP +
-        "?text=" +
-        encodeURIComponent(mensaje);
-
-    window.open(url,"_blank");
-}
-
+const WHATSAPP="51999609718",UNIDADES_POR_CAJA=20;let modo="unidades";
+function obtenerPrecio(c){if(c<=15)return 18;if(c<=20)return 17.5;if(c<=30)return 17;if(c<=39)return 16.75;if(c<=59)return 16.5;if(c<=79)return 16.25;if(c<=99)return 16.1;return 16}
+function cambiarModo(m){modo=m;document.getElementById("btnUnidades").classList.toggle("active",m==="unidades");document.getElementById("btnCajas").classList.toggle("active",m==="cajas");document.getElementById("cantidad").value=m==="cajas"?1:20;document.getElementById("labelCantidad").textContent=m==="cajas"?"Cantidad de cajas (20 unidades por caja)":"Cantidad de turrones";calcular()}
+function cambiarCantidad(d){let i=document.getElementById("cantidad"),v=parseInt(i.value)||1;v+=d;if(v<1)v=1;i.value=v;calcular()}
+function calcular(){let v=parseInt(document.getElementById("cantidad").value)||1;if(v<1)v=1;let u=modo==="cajas"?v*20:v,d=parseFloat(document.getElementById("delivery").value)||0,p=obtenerPrecio(u),s=u*p,t=s+d,c=Math.floor(u/20);document.getElementById("rUnidades").textContent=u;document.getElementById("rCajas").textContent=c+(c===1?" caja":" cajas");document.getElementById("rPrecio").textContent="S/ "+p.toFixed(2);document.getElementById("rSubtotal").textContent="S/ "+s.toFixed(2);document.getElementById("rDelivery").textContent="S/ "+d.toFixed(2);document.getElementById("rTotal").textContent="S/ "+t.toFixed(2)}
+function pedirWhatsApp(){let v=parseInt(document.getElementById("cantidad").value)||1,u=modo==="cajas"?v*20:v,d=parseFloat(document.getElementById("delivery").value)||0,p=obtenerPrecio(u),s=u*p,t=s+d,c=Math.floor(u/20),su=u%20;let detalle=modo==="cajas"?`${v} ${v===1?"caja":"cajas"} (${u} unidades)`:`${u} unidades`;if(modo==="unidades"&&su>0)detalle+=` — ${c} ${c===1?"caja":"cajas"} + ${su} sueltas`;let m=`Hola 👋, quiero realizar un pedido de Turrón Joel.\n\n📦 Pedido: ${detalle}\n🍬 Unidades: ${u}\n💰 Precio unitario: S/ ${p.toFixed(2)}\n🛒 Subtotal: S/ ${s.toFixed(2)}\n🚚 Delivery: S/ ${d.toFixed(2)}\n💵 TOTAL: S/ ${t.toFixed(2)}\n\nQuisiera confirmar disponibilidad y coordinar mi entrega.`;window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(m),"_blank")}
 calcular();
-
 </script>
-
 </body>
-</html>
+</html>'''
+
+html_path.write_text(html, encoding="utf-8")
+print(f"Archivo listo: {html_path}")
